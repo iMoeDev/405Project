@@ -20,14 +20,18 @@ const handle = (e)=>{
 
 const Submiting = async (e)=>{
     e.preventDefault()
-
+    setError(null)
+    setWeather(null)
         const fetchData =  async () => {
             try{
-                const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=3e762bb960a84d92a90152616241005&q=${input}&aqi=yes`)
+               
+                const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=3e762bb960a84d92a90152616241005&q=${input}&aqi=yes`)
                 if(res.status === 200){
                 const data = await res.json()
                 console.log(data)
                 setWeather(data)
+                
+
                 }
                 else{
                 const error = await res.json()
@@ -45,16 +49,22 @@ const Submiting = async (e)=>{
    
 }
 
-    return (
-        
+    return <>
+        <nav style={{ backgroundColor: "#f0f0f0", padding: "10px 0", textAlign: "center" }}>
+        <a href="/" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Home</a>
+        <a href="/exchange-rate" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Exchange Rates</a>
+        <a href="/weather" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Weather</a>
+        <a href="/MembersDetails" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Members Details</a>
+        <a href="/symbol-counter" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Symbol Counter</a>
+    </nav>
       <div className="Weather">
         <h1>Weather App</h1>
      <form onSubmit={Submiting}>
      <input type="text" 
-     placeholder="write a city name"
+     placeholder="Enter a city name"
      onChange={handle}
      />     
-     <button type='submit'> click me</button>
+     <button type='submit'>Submit</button>
      </form>
 
         {error && (<div><h1>{error}</h1></div>)}
@@ -70,7 +80,7 @@ const Submiting = async (e)=>{
           </div>
       )}
       </div>
-    );
+      </>
   }
   
   export default Weather;

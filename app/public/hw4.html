@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symbol Counter</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif; /* Sets the font for the page */
+        margin: 40px;
+        background-color: #f4f4f9; /* Light grey background for the page */
+        color: #333; /* Dark grey text for readability */
+    }
+    h2 {
+        color: #5a5a5a;
+    }
+    button {
+        background-color: #007BFF; /* Bootstrap blue */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #0056b3; /* A darker shade of blue for hover effect */
+    }
+    #output {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #fff; /* White background for the output area */
+        border: 1px solid #ccc; /* Light grey border around the output */
+        min-height: 50px;
+        word-wrap: break-word; /* Ensures the text wraps within the container */
+    }
+</style>
+</head>
+<body>
+
+    <h2>Click button to start:</h2>
+<button onclick="printPattern()">Print Pattern</button>
+<div id="output"></div>
+
+
+<script>
+    // Part 1
+    function printPattern() {
+        let symbol = prompt("Enter a symbol (SM):");
+        let counter = parseInt(prompt("Enter an integer value for the counter (CX):"));
+        
+        if (isNaN(counter)) {
+            alert("Please enter a valid integer for the counter.");
+            return;
+        }
+        
+        if (symbol === "99" || counter === 99) {
+            alert("Exiting the program as per your request.");
+            return;
+        }
+        
+        let output = "";
+                            
+        for (let i = counter; i >= 1; i--) {
+            output += symbol.repeat(i);
+            if (i > 1) {
+                output += "<br>";
+            }
+        }
+        
+        document.getElementById("output").innerHTML = output;
+    }
+
+    // Part 2
+    let myArray = ["Apple", "Banana", "Orange", "Grapes"];
+
+    console.log("Array:", myArray.toString());
+    console.log("Join:", myArray.join(", "));
+    console.log("Pop:", myArray.pop());
+    console.log("Push:", myArray.push("Mango"));
+    console.log("Search Methods:", myArray.indexOf("Banana"));
+    console.log("Sort Methods:", myArray.sort());
+    console.log("Shift:", myArray.shift());
+    console.log("Unshift:", myArray.unshift("Pineapple"));
+    console.log("Delete:", delete myArray[0]);
+    console.log("Concat:", myArray.concat(["Kiwi", "Watermelon"]));
+    console.log("Length:", myArray.length);
+</script>
+</body>
+</html>

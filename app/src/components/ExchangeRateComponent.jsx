@@ -22,9 +22,7 @@ function ExchangeRate() {
           const data = await response.json();
           if (data.result === 'success') {
             setRate(data.conversion_rate);
-          } else {
-            throw new Error('Failed to fetch exchange rate');
-          }
+          } 
         } catch (err) {
           setError(err.message);
         }
@@ -36,12 +34,20 @@ function ExchangeRate() {
     const handleAmountChange = (e) => {
       setAmountSAR(e.target.value);
       if (rate) {
-        setConvertedUSD((e.target.value * rate).toFixed(2));  // Calculate on the fly as user types
+        setConvertedUSD((e.target.value * rate).toFixed(2)); 
       }
     };
   
-    return (
+    return <>
+      <nav style={{ backgroundColor: "#f0f0f0", padding: "10px 0", textAlign: "center" }}>
+      <a href="/" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Home</a>
+      <a href="/exchange-rate" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Exchange Rates</a>
+      <a href="/weather" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Weather</a>
+      <a href="/MembersDetails" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Members Details</a>
+      <a href="/symbol-counter" style={{ margin: "10px", color: "#333", textDecoration: "none" }}>Symbol Counter</a>
+  </nav>
       <div className="SARToUSDExchangeRate">
+
         <h1>Convert SAR to USD</h1>
         {error ? <p>Error: {error}</p> :
           <div>
@@ -56,7 +62,7 @@ function ExchangeRate() {
           </div>
         }
       </div>
-    );
+      </>
   }
   
   export default ExchangeRate;
